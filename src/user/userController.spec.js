@@ -1,5 +1,10 @@
+/**
+ * @jest-environment ./prisma/prisma-environment-jest
+*/
+
 import request from "supertest";
 import express from "express";
+// import CustomEnvironment from "../../prisma/prisma-environment-jest.js"
 
 const app = express();
 
@@ -47,6 +52,6 @@ describe("Criando Usuário", () => {
         const user = await request(app).post('/user').send(userTest);
         const response = await request(app).delete(`/user/${user.id}`);
 
-        expect(response.id).toBeUndefined(true);
+        expect(response.id).toBeUndefined();
     })
 })
