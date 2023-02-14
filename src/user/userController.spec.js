@@ -1,7 +1,3 @@
-/**
- * @jest-environment ./prisma/prisma-environment-jest
-*/
-
 import request from "supertest";
 import express from "express";
 
@@ -23,6 +19,7 @@ describe("Criando Usuário", () => {
     })
 
     it ("Barrando criação de usuário se já existente", async () => {
+        await request(app).post('/user').send(userTest);
         const response = await request(app).post('/user').send(userTest);
 
         expect(response.status).toBe(404);
