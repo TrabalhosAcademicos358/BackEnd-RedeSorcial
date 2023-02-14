@@ -46,10 +46,7 @@ routes.post("/logout", async (req, res) => {
 });
 
 routes.get("/me", async (req, res) => {
-  const { userId } = req;
-  if (!userId) return res.redirect("/");
-
-  const user = await getUserById(userId);
+  const user = await getUserById(req.userId);
   res.redirect("/@" + user.username);
 });
 
