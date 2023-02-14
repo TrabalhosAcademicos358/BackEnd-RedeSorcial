@@ -2,7 +2,7 @@ import { Router } from "express";
 import { db } from "../database/db.js";
 import { updateUser } from "./updateUser.js";
 import { deleteUser } from "./deleteUser.js";
-import { createUser } from "../createUser.js";
+import { createUser } from "./createUser.js";
 import { getUserById } from "./getUserById.js";
 
 const router = Router();

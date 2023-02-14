@@ -36,7 +36,7 @@ describe("Fluxo de Post", ()=> {
                }, true);
     
                postsInMemory.push(post);
-        }).rejects.toBeInstanceOff(Error)
+        }).rejects.toBeInstanceOf(Error)
     })  
 
     it("Não deve criar um post se o campo userId não for enviado", async ()=>{
@@ -47,7 +47,7 @@ describe("Fluxo de Post", ()=> {
                }, true);
     
                postsInMemory.push(post);
-        }).rejects.toBeInstanceOff(Error)
+        }).rejects.toBeInstanceOf(Error)
     }) 
 
     it("Não deve criar um post se o campo description não for enviado", async ()=>{
@@ -58,7 +58,7 @@ describe("Fluxo de Post", ()=> {
                }, true);
     
                postsInMemory.push(post);
-        }).rejects.toBeInstanceOff(Error)
+        }).rejects.toBeInstanceOf(Error)
     }) 
 
     it("Deve retornar um erro se o id do post não for válido", async ()=>{
@@ -70,7 +70,7 @@ describe("Fluxo de Post", ()=> {
     it("Deve retornar um erro se o id do post não for encontrado no banco de dados", async ()=>{
         expect(async()=> {
             await getPost(6);
-        }).rejects.toBeInstanceOff(Error)
+        }).rejects.toBeInstanceOf(Error)
     }) 
 
     it("Deve retornar um post se o id do post for encontrado no banco de dados", async ()=>{
@@ -92,9 +92,9 @@ describe("Fluxo de Post", ()=> {
     it("Deve retornar um erro se o idUser do post for diferente do enviado", async ()=>{
         
         await updatePost({ id: 12345678, userId: 15, description: 'Post atualizado' });
-    }).rejects.toBeInstanceOff(Error)
+    }).rejects.toBeInstanceOf(Error)
 
     it("Deve retornar um erro se o id do post não existir no banco de dados", async ()=>{
         await updatePost({ id: 1234, userId: 10, description: 'Post atualizado' });
-    }).rejects.toBeInstanceOff(Error)
+    }).rejects.toBeInstanceOf(Error)
 })

@@ -24,4 +24,29 @@ describe("Criando Usuário", () => {
 
         expect(response.status).toBe(404);
     })
+
+    it ("Update de nome de usuario", async () => {
+        const user = await request(app).post('/user').send(userTest);
+        const response = await request(app).patch(`/user/${user.id}`).send({
+            name: "Test"
+        });
+
+        expect(response.name).toBe("Test");
+    })
+
+    it ("Update de email de usuario", async () => {
+        const user = await request(app).post('/user').send(userTest);
+        const response = await request(app).patch(`/user/${user.id}`).send({
+            email: "test@gmail.com"
+        });
+
+        expect(response.email).toBe("test@gmail.com");
+    })
+
+    it ("Deletar usuario", async () => {
+        const user = await request(app).post('/user').send(userTest);
+        const response = await request(app).delete(`/user/${user.id}`);
+
+        expect(response.id).toBeUndefined(true);
+    })
 })
