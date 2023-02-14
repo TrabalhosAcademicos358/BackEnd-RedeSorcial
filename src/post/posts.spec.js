@@ -2,7 +2,6 @@ import { createPost } from "./post/createPost.js";
 import { getPost } from "./post/getPostById.js";
 import { updatePost } from "./post/updatePost.js";
 
-
 //  const post = await createPost({ image, userId, description });
 
 let postsInMemory = [

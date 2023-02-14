@@ -26,7 +26,7 @@ describe("Criar Usuario", ()=> {
                 picture: 'https://www.euax.com.br/wp-content/uploads/2019/10/Teste.png',
                 username: 'usertest' 
                }, true);
-        }).rejects.toBeInstanceOff(Error)
+        }).rejects.toBeInstanceOf(Error)
     })  
 
     it("Não deve criar um usuario se o campo email não for enviado", async ()=>{
@@ -37,7 +37,7 @@ describe("Criar Usuario", ()=> {
                 picture: 'https://www.euax.com.br/wp-content/uploads/2019/10/Teste.png',
                 username: 'usertest' 
                }, true);
-        }).rejects.toBeInstanceOff(Error)
+        }).rejects.toBeInstanceOf(Error)
     })  
 
     it("Não deve criar um usuario se o campo username não for enviado", async ()=>{
@@ -48,7 +48,7 @@ describe("Criar Usuario", ()=> {
                 picture: 'https://www.euax.com.br/wp-content/uploads/2019/10/Teste.png',
                 email: 'teste@email.com' 
                }, true);
-        }).rejects.toBeInstanceOff(Error)
+        }).rejects.toBeInstanceOf(Error)
     })  
 
     it("Não deve criar um usuario se o campo picture não for enviado", async ()=>{
@@ -59,7 +59,7 @@ describe("Criar Usuario", ()=> {
                 username: 'usertest',
                 email: 'teste@email.com' 
                }, true);
-        }).rejects.toBeInstanceOff(Error)
+        }).rejects.toBeInstanceOf(Error)
     })  
     
 })

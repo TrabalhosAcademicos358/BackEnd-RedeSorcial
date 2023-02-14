@@ -44,9 +44,12 @@
     "jsonwebtoken": "^9.0.0",
     "nodemon": "^2.0.20",
     "nunjucks": "^3.2.3",
+    "pg": "^8.9.0",
     "redis": "^4.5.1",
+    "supertest": "^6.3.3",
     "ts-jest": "^29.0.5",
     "ts-node": "^10.9.1",
+    "uuid": "^9.0.0",
     "uuid-validate": "^0.0.3"
   }
 }

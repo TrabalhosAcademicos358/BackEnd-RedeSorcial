@@ -2,10 +2,16 @@ import { Router } from "express";
 import { db } from "../database/db.js";
 import { updateUser } from "./updateUser.js";
 import { deleteUser } from "./deleteUser.js";
+import { createUser } from "../createUser.js";
 import { getUserById } from "./getUserById.js";
 
 const router = Router();
 export const userRouter = router;
+
+router.post("/", async function (req, res) {
+  const users = createUser({ ...req.body })
+  res.json(users);
+})
 
 router.get("/", async function (req, res) {
   const users = await db.user.findMany({
