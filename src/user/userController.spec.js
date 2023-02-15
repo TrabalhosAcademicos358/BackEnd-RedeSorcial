@@ -20,22 +20,22 @@ describe("Criando Usuário", () => {
     })
 
     it("Criando usuário com sucesso", async () => {
-        const response = await request(app).post('/user').send(userTest);
-
+        const response = await request(app).post('/users').send(userTest);
+        
         expect(response.status).toBe(201);
         expect(response).toHaveProperty("id");
     })
 
     it ("Barrando criação de usuário se já existente", async () => {
-        await request(app).post('/user').send(userTest);
-        const response = await request(app).post('/user').send(userTest);
+        await request(app).post('/users').send(userTest);
+        const response = await request(app).post('/users').send(userTest);
 
         expect(response.status).toBe(404);
     })
 
     it ("Update de nome de usuário", async () => {
-        const user = await request(app).post('/user').send(userTest);
-        const response = await request(app).patch(`/user/${user.id}`).send({
+        const user = await request(app).post('/users').send(userTest);
+        const response = await request(app).patch(`/users/${user.id}`).send({
             name: "Test"
         });
 
@@ -43,8 +43,8 @@ describe("Criando Usuário", () => {
     })
 
     it ("Update de email de usuário", async () => {
-        const user = await request(app).post('/user').send(userTest);
-        const response = await request(app).patch(`/user/${user.id}`).send({
+        const user = await request(app).post('/users').send(userTest);
+        const response = await request(app).patch(`/users/${user.id}`).send({
             email: "test@gmail.com"
         });
 
@@ -52,8 +52,8 @@ describe("Criando Usuário", () => {
     })
 
     it ("Deletar usuário", async () => {
-        const user = await request(app).post('/user').send(userTest);
-        const response = await request(app).delete(`/user/${user.id}`);
+        const user = await request(app).post('/users').send(userTest);
+        const response = await request(app).delete(`/users/${user.id}`);
 
         expect(response.body.id).toBeUndefined();
     })
