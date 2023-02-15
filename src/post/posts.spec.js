@@ -1,6 +1,6 @@
-import { createPost } from "./post/createPost.js";
-import { getPost } from "./post/getPostById.js";
-import { updatePost } from "./post/updatePost.js";
+import { createPost } from "./createPost.js";
+import { getPost } from "./getPostById.js";
+import { updatePost } from "./updatePost.js";
 
 //  const post = await createPost({ image, userId, description });
 
@@ -18,9 +18,9 @@ describe("Fluxo de Post", ()=> {
     it("Deve criar um post se todos os campos forem enviados", async ()=>{
         let post = await createPost({ 
             image: 'https://especiais.g1.globo.com/educacao/guia-de-carreiras/teste-vocacional/assets/logo.png',
-            userId: 1,
+            userId: "d6be9cfd-9fb4-4724-a43c-dcd5fa11f027",
             description: 'Description mocked'
-           }, true);
+           });
 
            postsInMemory.push(post);
 
@@ -31,9 +31,9 @@ describe("Fluxo de Post", ()=> {
     it("Não deve criar um post se o campo image não for enviado", async ()=>{
         expect(async()=> {
             let post = await createPost({ 
-                userId: 1,
+                userId: "d6be9cfd-9fb4-4724-a43c-dcd5fa11f027",
                 description: 'Description mocked'
-               }, true);
+               });
     
                postsInMemory.push(post);
         }).rejects.toBeInstanceOf(Error)
@@ -44,7 +44,7 @@ describe("Fluxo de Post", ()=> {
             let post = await createPost({ 
                 image: 'https://especiais.g1.globo.com/educacao/guia-de-carreiras/teste-vocacional/assets/logo.png',
                 description: 'Description mocked'
-               }, true);
+               });
     
                postsInMemory.push(post);
         }).rejects.toBeInstanceOf(Error)
@@ -55,7 +55,7 @@ describe("Fluxo de Post", ()=> {
             let post = await createPost({ 
                 userId: 1,
                 image: 'https://especiais.g1.globo.com/educacao/guia-de-carreiras/teste-vocacional/assets/logo.png',
-               }, true);
+               });
     
                postsInMemory.push(post);
         }).rejects.toBeInstanceOf(Error)

@@ -52,7 +52,7 @@ describe("Criar Usuario", () => {
                 name: 'Jhon Doe',
                 picture: 'https://www.euax.com.br/wp-content/uploads/2019/10/Teste.png',
                 username: 'usertest'
-            }, true);
+            });
         }).rejects.toBeInstanceOf(Error)
     })
 
@@ -63,7 +63,7 @@ describe("Criar Usuario", () => {
                 name: 'Jhon Doe',
                 picture: 'https://www.euax.com.br/wp-content/uploads/2019/10/Teste.png',
                 email: 'teste@email.com'
-            }, true);
+            });
         }).rejects.toBeInstanceOf(Error)
     })
 
@@ -74,7 +74,7 @@ describe("Criar Usuario", () => {
                 name: 'Jhon Doe',
                 username: 'usertest',
                 email: 'teste@email.com'
-            }, true);
+            });
         }).rejects.toBeInstanceOf(Error)
     })
 

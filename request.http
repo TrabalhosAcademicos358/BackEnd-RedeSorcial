@@ -1,0 +1,9 @@
+POST http://localhost:3000/api/v1/users HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "unique",
+    "username": "unique",
+    "email": "unique@test.com.br",
+    "picture": "https://avatars.githubusercontent.com/u/77421294?v=4"
+}

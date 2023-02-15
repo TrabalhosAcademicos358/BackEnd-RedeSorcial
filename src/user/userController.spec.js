@@ -1,6 +1,4 @@
-/**
- * @jest-environment ./prisma/prisma-environment-jest
-*/
+import { v4 as uuidv4 } from "uuid";
 
 import request from "supertest";
 import express from "express";
@@ -8,50 +6,55 @@ import express from "express";
 
 const app = express();
 
-const userTest = {
-    username: "test-integration",
-    email: "testIntegration@test.com.br",
-    name: "Test Integration",
-    picture: "https://avatars.githubusercontent.com/u/77421294?v=4"
-}
+let userTest;
 
 describe("Criando Usuário", () => {
-    it("Criando usuário com sucesso", async () => {
-        const response = await request(app).post('/user').send(userTest);
+    beforeEach(() => {
+        const unique = uuidv4();
+        userTest = {
+            username: unique,
+            email: `${unique}@test.com.br`,
+            name: unique,
+            picture: "https://avatars.githubusercontent.com/u/77421294?v=4"
+        };
+    })
 
+    it("Criando usuário com sucesso", async () => {
+        const response = await request(app).post('/users').send(userTest);
+        
         expect(response.status).toBe(201);
         expect(response).toHaveProperty("id");
     })
 
     it ("Barrando criação de usuário se já existente", async () => {
-        await request(app).post('/user').send(userTest);
-        const response = await request(app).post('/user').send(userTest);
+        await request(app).post('/users').send(userTest);
+        const response = await request(app).post('/users').send(userTest);
 
         expect(response.status).toBe(404);
     })
 
-    it ("Update de nome de usuario", async () => {
-        const user = await request(app).post('/user').send(userTest);
-        const response = await request(app).patch(`/user/${user.id}`).send({
+    it ("Update de nome de usuário", async () => {
+        const user = await request(app).post('/users').send(userTest);
+        const response = await request(app).patch(`/users/${user.id}`).send({
             name: "Test"
         });
 
-        expect(response.name).toBe("Test");
+        expect(response.body.name).toBe("Test");
     })
 
-    it ("Update de email de usuario", async () => {
-        const user = await request(app).post('/user').send(userTest);
-        const response = await request(app).patch(`/user/${user.id}`).send({
+    it ("Update de email de usuário", async () => {
+        const user = await request(app).post('/users').send(userTest);
+        const response = await request(app).patch(`/users/${user.id}`).send({
             email: "test@gmail.com"
         });
 
-        expect(response.email).toBe("test@gmail.com");
+        expect(response.body.email).toBe("test@gmail.com");
     })
 
-    it ("Deletar usuario", async () => {
-        const user = await request(app).post('/user').send(userTest);
-        const response = await request(app).delete(`/user/${user.id}`);
+    it ("Deletar usuário", async () => {
+        const user = await request(app).post('/users').send(userTest);
+        const response = await request(app).delete(`/users/${user.id}`);
 
-        expect(response.id).toBeUndefined();
+        expect(response.body.id).toBeUndefined();
     })
 })

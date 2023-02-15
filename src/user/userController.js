@@ -9,8 +9,8 @@ const router = Router();
 export const userRouter = router;
 
 router.post("/", async function (req, res) {
-  const users = createUser({ ...req.body })
-  res.json(users);
+  const users = await createUser({ ...req.body })
+  res.status(201).json(users);
 })
 
 router.get("/", async function (req, res) {
