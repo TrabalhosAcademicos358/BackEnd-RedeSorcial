@@ -1,3 +1,5 @@
+import { jest } from "@jest/globals"
+
 import { createUser } from "../user/createUser.js";
 
 const testUser = {
