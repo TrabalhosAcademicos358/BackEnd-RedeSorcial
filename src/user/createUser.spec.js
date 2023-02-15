@@ -37,14 +37,12 @@ describe("Criar Usuario", () => {
     });
 
     it("Não deve criar um usuario se o campo name não for enviado", async () => {
-
         expect(async () => {
             await createUser({
-                email: 'teste@email.com',
-                picture: 'https://www.euax.com.br/wp-content/uploads/2019/10/Teste.png',
-                username: 'usertest'
-            }, true);
-        }).rejects.toBeInstanceOf(Error)
+                ...testUser,
+                name: undefined
+            });
+        }).toThrow();
     })
 
     it("Não deve criar um usuario se o campo email não for enviado", async () => {
