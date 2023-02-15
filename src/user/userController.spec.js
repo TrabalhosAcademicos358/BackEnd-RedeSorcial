@@ -1,6 +1,3 @@
-/**
- * @jest-environment ./prisma/prisma-environment-jest
-*/
 
 import request from "supertest";
 import express from "express";
@@ -9,9 +6,9 @@ import express from "express";
 const app = express();
 
 const userTest = {
-    username: "test-integration",
-    email: "testIntegration@test.com.br",
-    name: "Test Integration",
+    username: "test-Entegration",
+    email: "testEntegration@test.com.br",
+    name: "Test Entegration",
     picture: "https://avatars.githubusercontent.com/u/77421294?v=4"
 }
 

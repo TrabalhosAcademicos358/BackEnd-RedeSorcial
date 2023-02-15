@@ -2,16 +2,15 @@ import { createUser } from "../user/createUser.js";
 
 let usersInMemory = [];
 
-describe("Criar Usuario", ()=> {
+describe("Criar Usuario", async () => {
+    const user = await createUser({ 
+        email: 'teste@email.com',
+        name: 'Jhon Doe',
+        picture: 'https://www.euax.com.br/wp-content/uploads/2019/10/Teste.png',
+        username: 'usertest' 
+    })
     
     it("Deve criar um usuario se todos os campos forem enviados", async ()=>{
-        let user = await createUser({ 
-         email: 'teste@email.com',
-         name: 'Jhon Doe',
-         picture: 'https://www.euax.com.br/wp-content/uploads/2019/10/Teste.png',
-         username: 'usertest' 
-        }, true);
-
         usersInMemory.push(user);
 
         //Verifica se o usuario foi criado, se foi ele deve ter um id
@@ -36,7 +35,7 @@ describe("Criar Usuario", ()=> {
                 name: 'Jhon Doe',
                 picture: 'https://www.euax.com.br/wp-content/uploads/2019/10/Teste.png',
                 username: 'usertest' 
-               }, true);
+               });
         }).rejects.toBeInstanceOf(Error)
     })  
 
@@ -47,7 +46,7 @@ describe("Criar Usuario", ()=> {
                 name: 'Jhon Doe',
                 picture: 'https://www.euax.com.br/wp-content/uploads/2019/10/Teste.png',
                 email: 'teste@email.com' 
-               }, true);
+               });
         }).rejects.toBeInstanceOf(Error)
     })  
 
@@ -58,7 +57,7 @@ describe("Criar Usuario", ()=> {
                 name: 'Jhon Doe',
                 username: 'usertest',
                 email: 'teste@email.com' 
-               }, true);
+               });
         }).rejects.toBeInstanceOf(Error)
     })  
     
