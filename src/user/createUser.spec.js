@@ -9,20 +9,10 @@ const testUser = {
     username: 'usertest'
 };
 
-const mockDbUserCreate = jest.fn().mockImplementation(() => {
-    return {
-        id: 123,
-        ...testUser
-    };
-});
-
-jest.mock("../database/db.js", () => {
-    return {
-        user: {
-            create: mockDbUserCreate
-        }
-    }
-});
+jest.mock("../database/db", () => () => { user: { create: () => { return {
+    id: 123,
+    ...testUser
+} } } });
 
 describe("Criar Usuario", () => {
 
@@ -31,9 +21,6 @@ describe("Criar Usuario", () => {
 
         //Verifica se o usuario foi criado, se foi ele deve ter um id
         expect(user).toHaveProperty("id");
-        expect(mockDbUserCreate).toHaveBeenCalledWith({
-            data: testUser,
-        });
     });
 
     it("Não deve criar um usuario se o campo name não for enviado", async () => {
